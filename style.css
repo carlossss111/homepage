@@ -6,10 +6,11 @@
 
 /*Background*/
 body {
-    background-color:rgb(2,103,145);
-    background-image: url("./images/backgrounds/fishing.jpg");
-    /*background-image: url("./images/backgrounds/skyhigh.jpg");*/
-    /*background-image: url("./images/backgrounds/totoro.gif");*/
+    /*background-color:rgb(2,103,145);*/
+    background-color:black;
+    /*background-image: url("./images/backgrounds/fishing.jpg");/**/
+    /*background-image: url("./images/backgrounds/skyhigh.jpg");/**/
+    background-image: url("./images/backgrounds/totoro.gif");/**/
     background-size: cover;
     background-repeat: no-repeat;
 }
