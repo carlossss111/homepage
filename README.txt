@@ -17,9 +17,15 @@ Contains CSS code for positioning and colour.
 ------------
 -script.js--
 ------------
-Contains script determining the contents of the Welcome Message, dependant on the time of day.
+Contains script determining the contents of the Welcome Message, dependent on the day of the week so there is alliteration.
 
 ------------
 -images-dir-
 ------------
 Contains the images used on the webpage.
+
+>>>>>>>>>>TODO>>>>>>>>>>
+Script.js
+//Todo keep one adj per day
+//Todo prevent repetitive ones
+//Todo link to definition
