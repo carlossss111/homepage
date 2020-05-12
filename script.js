@@ -27,10 +27,21 @@ const getDayString = function(){
 //Sends a HTTP GET request to openweather.org API. On success, returns a JSON file with local weather at current time.
 const getWeatherData = async function(){
 
+    //Gets the location from the user's PC.
+    let myLocation = await new Promise((resolve,reject) => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position)=>{
+                console.log(`lat=${position.coords.latitude}&lon=${position.coords.longitude}`);
+                resolve(`lat=${position.coords.latitude}&lon=${position.coords.longitude}`);
+            })}
+        else{
+            reject("q=Norwich,uk")
+        }
+    })
+
     //Constructs the URL by concaternating the main site and the query string.
     const apiKey = "59c1a6efb5ee1aa080e71cdfc6293b6c";
     const units = "metric"
-    const myLocation = "lat=52.67&lon=1.31";
     const url = `https://api.openweathermap.org/data/2.5/weather?${myLocation}&units=${units}&appid=${apiKey}`;
     console.log("Connecting to:", url);
 
