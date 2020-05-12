@@ -27,22 +27,27 @@ const getDayString = function(){
 //Sends a HTTP GET request to openweather.org API. On success, returns a JSON file with local weather at current time.
 const getWeatherData = async function(){
 
-    //Gets the location from the user's PC.
-    let myLocation = await new Promise((resolve,reject) => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position)=>{
-                console.log(`lat=${position.coords.latitude}&lon=${position.coords.longitude}`);
-                resolve(`lat=${position.coords.latitude}&lon=${position.coords.longitude}`);
-            })}
-        else{
-            reject("q=Norwich,uk")
-        }
-    })
+    //If there is no location data stored, then new location data for Lattitude and Longitude is requested.
+    //The new data is stored for next time, and this block is not invoked again until the user wipes their data.
+    //This data is stored because the finding the location each time takes too long.
+    if(localStorage.getItem("myLocation") === null){
+        let myLocation = await new Promise((resolve,reject) => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position)=>{
+                    console.log(`Exsisting location not found. New location at: 'lat=${position.coords.latitude}&lon=${position.coords.longitude}'`);
+                    resolve(`lat=${position.coords.latitude}&lon=${position.coords.longitude}`);
+                })}
+            else{
+                reject("q=Norwich,uk")
+            }
+        })
+        localStorage.setItem("myLocation",myLocation)
+    }
 
     //Constructs the URL by concaternating the main site and the query string.
     const apiKey = "59c1a6efb5ee1aa080e71cdfc6293b6c";
     const units = "metric"
-    const url = `https://api.openweathermap.org/data/2.5/weather?${myLocation}&units=${units}&appid=${apiKey}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?${localStorage.getItem("myLocation")}&units=${units}&appid=${apiKey}`;
     console.log("Connecting to:", url);
 
     //Tries to connect to the url using fetch() inbuilt function. Awaits response then if the response is valid
@@ -88,7 +93,7 @@ const getWeatherDescriptor = async function(rawData){
     else if (data.weather[0].main === "Mist"){ 
         document.getElementById("backgroundImage").style.backgroundImage = "url('./images/backgrounds/mist.png')";
         return "misty"; }
-    else if (data.main.humidity >= 70){ 
+    else if (data.main.humidity >= 80){ 
         document.getElementById("backgroundImage").style.backgroundImage = "url('./images/backgrounds/humid.jpg')";
         return "humid"; }
     else if (data.wind.speed >= 8){ 
