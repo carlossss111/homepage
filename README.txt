@@ -18,31 +18,26 @@ Contains CSS code for positioning and colour.
 -script.js--
 ------------
 The script determines the welcome message with the following criteria:
->The adjective directly preceeding the day of the week causes alliteration.
->There is only one new adjective each day, AKA the adjective of the day!
+>The adjective directly preceeding the day of the week causes describes the current weather using an API.
 
-[findDayString Function]
+[getDayString Function]
 1.Date() inbuilt function returns the full date format. The day number is selected.
 2.Depending on the day number, an equivalent string is returned (i.e 0 = "sunday").
 
-[randomFromArray Function]
-Returns the value of a random element in an array. Used in 'findAdjective' function to get a random adjective.
+[getWeatherData Async Function (ES8)]
+1.Constructs a URL with the base and a query string.
+2.The response from that address is collected using a GET request. This response is from openweather.org and returns a JSON file.
+3.The response is stringified and returned (for use in the next async function).
 
-[findAdjective Function]
-1.First the date is checked with the 'lastDate' stored variable. If it is NOT a new day since the page was last opened then the adjective is still current so can be returned. The rest of this function is therefore skipped in this case.
-2.(Hence when the last adjective and date is not current the rest of the code continues...), all possible adjectives are set in an array and an empty array is also initalised.
-3.The empty array is filled with all adjectives from the main array that cause alliteration with the day of the week (i.e [F]abulous [F]riday). The 'findDayString' function is used to find the day of the week.
-4.A random adjective is selected from that array using the 'randomFromArray' function.
-5.The lastDate and lastAdj local variables are updated (see part 1).
-6.Return random adjective from part 4.
+[getWeatherDescriptor Async Function (ES8)]
+1.Takes an object as an arguement (should be what is returned from getWeatherData).
+2.Using the data in the object, a series of branches determine what descriptor to return (for use in the last async function).
 
+[printGreeting Async Function (ES8)]
+1.The descriptor (should be from getWeatherDescriptor and it's dependants) and the day of the week (should be from getDayString) are concaternated and the result is printed to the console and to the HTML file.
+
+printGreeting is called with getWeatherDescriptor(getWeatherData) as the first arguement and getDayString as the second.
 ------------
 -images-dir-
 ------------
 Contains the images used on the webpage.
-
->>>>>>>>>>TODO>>>>>>>>>>
-Script.js
-//Todo keep one adj per day
-//Todo prevent repetitive ones
-//Todo link to definition
