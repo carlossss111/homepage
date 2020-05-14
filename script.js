@@ -103,7 +103,7 @@ const getWeatherDescriptor = async function(rawData){
         document.getElementById("backgroundImage").style.backgroundImage = "url('./images/backgrounds/clouds.jpg')"
         return "cloudy"; }
     else{ 
-        document.getElementById("backgroundImage").style.backgroundImage = "url('./images/backgrounds/clear.jpg')";
+        document.getElementById("backgroundImage").style.backgroundImage = "url('./images/backgrounds/clear.jpeg')";
         return "clear"};
 }
 
