@@ -96,7 +96,7 @@ const getWeatherDescriptor = async function(rawData){
     else if (data.main.humidity >= 80){ 
         document.getElementById("backgroundImage").style.backgroundImage = "url('./images/backgrounds/humid.jpg')";
         return "humid"; }
-    else if (data.wind.speed >= 8){ 
+    else if (data.wind.speed >= 7){ 
         document.getElementById("backgroundImage").style.backgroundImage = "url('./images/backgrounds/wind.jpg')";
         return "windy"; }
     else if (data.weather[0].main === "Clouds"){ 
