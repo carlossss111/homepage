@@ -84,7 +84,7 @@ const getWeatherDescriptor = async function(rawData){
     else if (data.weather[0].main === "Rain" || data.weather[0].main === "Drizzle"){ 
         document.getElementById("backgroundImage").style.backgroundImage = "url('./images/backgrounds/rain.gif')";
         return "rainy"; }
-    else if (data.main.temp >= 30){ 
+    else if (data.main.temp >= 26){ 
         document.getElementById("backgroundImage").style.backgroundImage = "url('./images/backgrounds/hot.jpg')";
         return "hot"; }
     else if (data.main.temp <= 0){ 
