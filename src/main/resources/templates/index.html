@@ -6,7 +6,9 @@
     </head>
     <body>
         <p>Hello World</p>
-        <p th:text="${dateStr}"></p>
-        <p th:text="${weather.descriptor}"></p>
+        <p>It's a 
+            <span th:text="${weather.adjective}"></span> 
+            <span th:text="${dateStr}"></span>!
+        </p>
     </body>
 </html>

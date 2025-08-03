@@ -33,5 +33,30 @@
     "name": "weather.http_timeout_s",
     "type": "java.lang.Integer",
     "description": "Timeout for HTTP request in seconds"
+  },
+  {
+    "name": "weather.highWindspeed",
+    "type": "java.lang.Integer",
+    "description": "Windspeed /10 that we consider high"
+  },
+  {
+    "name": "weather.highHumidity",
+    "type": "java.lang.Integer",
+    "description": "Humidity % that we consider high"
+  },
+  {
+    "name": "weather.veryHighTemp",
+    "type": "java.lang.Integer",
+    "description": "Temperature 'C that we consider blisteringly hot in this country"
+  },
+  {
+    "name": "weather.highTemp",
+    "type": "java.lang.Integer",
+    "description": "Temperature 'C that we consider uncomfortable"
+  },
+  {
+    "name": "weather.freezingTemp",
+    "type": "java.lang.Integer",
+    "description": "Temperate 'C at below which water freezes (dunno why this is configurable)"
   }
 ]}
