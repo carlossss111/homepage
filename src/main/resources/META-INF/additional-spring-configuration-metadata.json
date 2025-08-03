@@ -1,5 +1,37 @@
-{"properties": [{
-  "name": "weather.refresh_cron",
-  "type": "java.lang.String",
-  "description": "Cron format for how often to query the weather API"
-}]}
+{"properties": [
+  {
+    "name": "weather.refresh_cron",
+    "type": "java.lang.String",
+    "description": "Cron format for how often to query the weather API"
+  },
+  {
+    "name": "weather.api_key",
+    "type": "java.lang.String",
+    "description": "API Key to query the weather API, should be provided as an environment variable"
+  },
+  {
+    "name": "weather.units",
+    "type": "java.lang.String",
+    "description": "Wether to ask for metric or imperial measurements <'metric'|'imperial'>"
+  },
+  {
+    "name": "weather.longitude",
+    "type": "java.lang.Double",
+    "description": "Longitude of weather center"
+  },
+  {
+    "name": "weather.latitude",
+    "type": "java.lang.Double",
+    "description": "Latitude of weather center"
+  },
+  {
+    "name": "weather.base_url",
+    "type": "java.lang.String",
+    "description": "Baseurl of the weather API"
+  },
+  {
+    "name": "weather.http_timeout_s",
+    "type": "java.lang.Integer",
+    "description": "Timeout for HTTP request in seconds"
+  }
+]}

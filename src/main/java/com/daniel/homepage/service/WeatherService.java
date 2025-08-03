@@ -8,12 +8,14 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.time.Duration;
 
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.lang.Nullable;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.daniel.homepage.config.WeatherConfig;
 import com.daniel.homepage.model.Weather;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,21 +24,30 @@ import jakarta.annotation.PostConstruct;
 
 @Service
 @EnableScheduling
+@EnableConfigurationProperties(WeatherConfig.class)
 public class WeatherService {
-    private static final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"; //TODO: move to config
-    private static final long HTTP_TIMEOUT = 3;
+
+    @Autowired
+    private WeatherConfig mConfig;
 
     private Weather mCurrentWeather = null;
-    
+
     @PostConstruct
     @Scheduled(cron = "${weather.refresh_cron}")
     public void setWeather() {
         HttpClient httpClient = HttpClient.newBuilder()
-            .connectTimeout(Duration.ofSeconds(HTTP_TIMEOUT))
+            .connectTimeout(Duration.ofSeconds(mConfig.getHttpTimeoutS()))
             .build();
 
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(WEATHER_URL + "?lat=52.6614528&lon=1.3205504&units=metric&appid=59c1a6efb5ee1aa080e71cdfc6293b6c"))
+            .uri(URI.create(String.format(
+                "%s?lat=%f&lon=%f&units=%s&appid=%s",
+                mConfig.getBaseUrl(), 
+                mConfig.getLatitude(), 
+                mConfig.getLongitude(), 
+                mConfig.getUnits(), 
+                mConfig.getApiKey()
+            )))
             .build();
 
         try{
