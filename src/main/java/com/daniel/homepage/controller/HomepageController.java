@@ -1,15 +1,14 @@
 package com.daniel.homepage.controller;
 
 import java.time.LocalDateTime;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.daniel.homepage.services.DateService;
-import com.daniel.homepage.services.WeatherService;
+import com.daniel.homepage.service.DateService;
+import com.daniel.homepage.service.WeatherService;
 
 
 @Controller

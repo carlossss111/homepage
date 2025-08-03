@@ -1,4 +1,4 @@
-package com.daniel.homepage.services;
+package com.daniel.homepage.service;
 
 import java.time.LocalDateTime;
 import java.time.format.TextStyle;

@@ -1,18 +1,19 @@
-package com.daniel.homepage.services;
+package com.daniel.homepage.service;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.URI;
-import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.time.Duration;
 
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
-import com.daniel.homepage.entity.Weather;
+import com.daniel.homepage.model.Weather;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class WeatherService {
@@ -23,6 +24,7 @@ public class WeatherService {
         // In very near future we want to make the HTTP request periodically, then getWeather() will just get from the cache
     }
     
+    @Nullable
     public Weather getWeather() {
         HttpClient httpClient = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(HTTP_TIMEOUT))
@@ -34,13 +36,18 @@ public class WeatherService {
 
         try{
             HttpResponse<String> response = httpClient.send(request, BodyHandlers.ofString());
-            System.out.println(response.body());
+            System.out.println("Request: " + response);
+            Weather weather = new ObjectMapper().readValue(response.body(), Weather.class);
+            System.out.println("Weather model: " + weather);
+            return weather;
         }
-        catch (IOException | InterruptedException e){
+        catch (JsonProcessingException e){
+            System.out.println("Failed to read the weather json! " + e);
+        }
+        catch (IOException |  InterruptedException e){
             System.out.println("Failed to request the weather! " + e);
         }
-        
-        return new Weather("todo");
+        return null;
     }
     
 }
