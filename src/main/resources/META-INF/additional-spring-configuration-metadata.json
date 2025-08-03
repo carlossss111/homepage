@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "weather.refresh_cron",
+  "type": "java.lang.String",
+  "description": "Cron format for how often to query the weather API"
+}]}
