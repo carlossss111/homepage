@@ -1,0 +1,14 @@
+[Unit]
+Description=Launch web browser homepage on a known port
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+Environment="API_KEY=<API_KEY>"
+Environment="LAT=<LAT>"
+Environment="LON=<LON>"
+ExecStart=<JAVA_HOME>/bin/java -jar <JAR_FILEPATH>
+
+[Install]
+WantedBy=multi-user.target

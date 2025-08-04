@@ -1,0 +1,5 @@
+#!/bin/bash
+export JAVA_HOME=path-here
+export API_KEY=string-here
+export LON=float-value-here
+export LAT=float-value-here
