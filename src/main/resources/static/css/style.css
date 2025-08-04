@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+}
+
+body{
+    font-family: Fira Mono;
+    color:crimson;
+}
+
+/* Wallpaper */
+.wallpaper{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-attachment: fixed;
+}
+
+/* Search */
+.center-anchor{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 0.94;
+}
+
+.center-anchor div{
+    margin: 0.8rem 0;
+}
+
+.tagline-container{
+    width: 550px;
+    background-color: white;
+    border: 2px solid crimson;
+    padding: 0.8rem 2rem;
+    border-radius: 18px;
+    filter: drop-shadow(6px 6px 0 crimson);
+}
+
+.tagline-container h1{
+    font-size: 40px;
+}
+
+.searchbox-container form input{
+    width: 550px;
+    padding: 0.8rem 3rem 0.5rem 1rem;
+    height: 48px;
+    border-radius: 18px;
+    border: 2px solid crimson;
+    filter: drop-shadow(6px 6px 0 crimson);
+    font-size: 19px;
+    user-select: none;
+    color:crimson;
+    font-family: Fira Mono;
+}
+
+input:focus{
+    outline: inherit;
+}

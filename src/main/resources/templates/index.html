@@ -4,20 +4,25 @@
         <meta charset="utf-8"/>
         <meta name="description" content="Homepage"/>
         <style th:inline="css">
-            * {
-                color: white;
-            }
             .wallpaper{
                 background-image: url(/*[( @{${wallpaper.imageUrl}} )]*/);
             }
         </style>
+        <link th:href="@{/css/style.css}" rel="stylesheet"/>
     </head>
     <body class="wallpaper">
-        <p th:text="${wallpaper.imageUrl}"></p>
-        <p>Hello World</p>
-        <p>It's a 
-            <span th:text="${weather.adjective}"></span> 
-            <span th:text="${dateStr}"></span>!
-        </p>
+        <section class="center-anchor">
+            <div class="tagline-container">
+                <h1>It's a 
+                    <span th:text="${weather.adjective}"></span> 
+                    <span th:text="${dateStr}"></span>!
+                </h1>
+            </div>
+            <div class="searchbox-container">
+                <form method="post" action="https://duckduckgo.com/">
+                    <input type="text" name="q" value="" placeholder="Search..." autofocus="autofocus">
+                </form>
+            </div>
+        </section>
     </body>
 </html>
