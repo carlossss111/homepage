@@ -3,8 +3,17 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="description" content="Homepage"/>
+        <style th:inline="css">
+            * {
+                color: white;
+            }
+            .wallpaper{
+                background-image: url(/*[( @{${wallpaper.imageUrl}} )]*/);
+            }
+        </style>
     </head>
-    <body>
+    <body class="wallpaper">
+        <p th:text="${wallpaper.imageUrl}"></p>
         <p>Hello World</p>
         <p>It's a 
             <span th:text="${weather.adjective}"></span> 

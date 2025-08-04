@@ -52,36 +52,50 @@ public class WeatherDeserializer extends StdDeserializer<Weather>{
         Weather weather = new Weather();
 
         JsonNode summaryNode = root.get(WEATHER_NODE).get(SUMMARY_NODE);
-        weather.descriptor   = summaryNode.get(WEATHER_NAME).asText();
-        weather.summary      = summaryNode.get(DESCRIPTION).asText();
+        weather.setDescriptor(
+            summaryNode.get(WEATHER_NAME).asText());
+        weather.setSummary(
+            summaryNode.get(DESCRIPTION).asText());
 
-        JsonNode mainNode    = root.get(MAIN_NODE);
-        weather.temp         = mainNode.get(TEMPERATURE).asDouble();
-        weather.minTemp      = mainNode.get(TEMPERATURE_MIN).asDouble();
-        weather.maxTemp      = mainNode.get(TEMPERATURE_MAX).asDouble();
-        weather.feelsLike    = mainNode.get(TEMPERATURE_FEELS_LIKE).asDouble();
-        weather.pressure     = mainNode.get(PRESSURE).asInt();
-        weather.humidity     = mainNode.get(HUMIDITY).asInt();
+        JsonNode mainNode = root.get(MAIN_NODE);
+        weather.setTemp(
+            mainNode.get(TEMPERATURE).asDouble());
+        weather.setMinTemp(
+            mainNode.get(TEMPERATURE_MIN).asDouble());
+        weather.setMaxTemp(
+            mainNode.get(TEMPERATURE_MAX).asDouble());
+        weather.setFeelsLike(
+            mainNode.get(TEMPERATURE_FEELS_LIKE).asDouble());
+        weather.setPressure(
+            mainNode.get(PRESSURE).asInt());
+        weather.setHumidity(
+            mainNode.get(HUMIDITY).asInt());
 
-        JsonNode windNode    = root.get(WIND_NODE);
-        weather.windSpeed    = windNode.get(WIND_SPEED).asDouble();
-        weather.windDirectionDeg = windNode.get(WIND_DIRECTION).asDouble();
+        JsonNode windNode = root.get(WIND_NODE);
+        weather.setWindSpeed(
+            windNode.get(WIND_SPEED).asDouble());
+        weather.setWindDirectionDeg(
+            windNode.get(WIND_DIRECTION).asDouble());
 
-        JsonNode cloudNode   = root.get(CLOUD_NODE);
-        weather.cloudCover   = cloudNode.get(CLOUDS_ALL).asInt();
+        JsonNode cloudNode = root.get(CLOUD_NODE);
+        weather.setCloudCover(
+            cloudNode.get(CLOUDS_ALL).asInt());
 
-        JsonNode sunNode     = root.get(SUN_NODE);
-        weather.sunrise      = Instant.ofEpochSecond(sunNode.get(SUNRISE).asLong())
+        JsonNode sunNode = root.get(SUN_NODE);
+        weather.setSunrise(Instant.ofEpochSecond(sunNode.get(SUNRISE).asLong())
             .atZone(ZoneId.systemDefault()) 
-            .toLocalDateTime();
-        weather.sunset       = Instant.ofEpochSecond(sunNode.get(SUNSET).asLong())
+            .toLocalDateTime());
+        weather.setSunset(Instant.ofEpochSecond(sunNode.get(SUNSET).asLong())
             .atZone(ZoneId.systemDefault()) 
-            .toLocalDateTime();
+            .toLocalDateTime());
 
         JsonNode coordsNode  = root.get(COORDS_NODE);
-        weather.locationName = root.get(LOCATION).asText();
-        weather.lat          = coordsNode.get(LAT).asDouble();
-        weather.lon          = coordsNode.get(LON).asDouble();
+        weather.setLocationName(
+            root.get(LOCATION).asText());
+        weather.setLat(
+            coordsNode.get(LAT).asDouble());
+        weather.setLon(
+            coordsNode.get(LON).asDouble());
 
         return weather;
     }

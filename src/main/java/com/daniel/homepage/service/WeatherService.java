@@ -11,7 +11,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.lang.Nullable;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -38,7 +37,7 @@ public class WeatherService {
     private Weather currentWeather = null;
 
     private String decideAdjective(final Weather weather){
-        String descriptor = weather.descriptor.toLowerCase();
+        String descriptor = weather.getDescriptor().toLowerCase();
 
         Map<String, String> adjectiveMap = Map.of(
             "snow", messageConfig.getSnow(),
@@ -52,19 +51,19 @@ public class WeatherService {
         if(descriptor.matches("snow|thunderstorm|rain|drizzle|mist"))
             return adjectiveMap.get(descriptor);
 
-        if(weather.temp <= weatherConfig.getFreezingTemp())
+        if(weather.getTemp() <= weatherConfig.getFreezingTemp())
             return messageConfig.getBelowZero();
 
-        if(weather.temp >= weatherConfig.getVeryHighTemp())
+        if(weather.getTemp() >= weatherConfig.getVeryHighTemp())
             return messageConfig.getVeryHighHeat();
             
-        if(weather.temp >= weatherConfig.getHighTemp())
+        if(weather.getTemp() >= weatherConfig.getHighTemp())
             return messageConfig.getHighHeat();
 
-        if(weather.humidity >= weatherConfig.getHighHumidity())
+        if(weather.getHumidity() >= weatherConfig.getHighHumidity())
             return messageConfig.getHighHumidity();
 
-        if(weather.windSpeed >= weatherConfig.getHighWindspeed())
+        if(weather.getWindSpeed() >= weatherConfig.getHighWindspeed())
             return messageConfig.getWind();
 
         if(adjectiveMap.get(descriptor) != null) // 'clouds' should be the only value left
@@ -99,7 +98,7 @@ public class WeatherService {
             System.out.println("Weather model: " + currentWeather);
             
             currentWeather.setAdjective(decideAdjective(currentWeather));
-            System.out.println("Adjective chosen: " + currentWeather.adjective);
+            System.out.println("Adjective chosen: " + currentWeather.getAdjective());
         }
         catch (JsonProcessingException e){
             System.out.println("Failed to read the weather json! " + e);
@@ -109,8 +108,10 @@ public class WeatherService {
         }
     }
     
-    @Nullable
     public Weather getWeather() {
+        if (currentWeather == null){
+            currentWeather = new Weather();
+        }
         return currentWeather;
     }
     
