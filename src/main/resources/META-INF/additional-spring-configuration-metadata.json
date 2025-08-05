@@ -123,5 +123,10 @@
     "name": "shortcut.images",
     "type": "java.lang.String[]",
     "description": "List of image urls for the shortcuts"
+  },
+  {
+    "name": "shortcut.alts",
+    "type": "java.lang.String[]",
+    "description": "List of alt text for shortcuts"
   }
 ]}

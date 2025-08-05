@@ -26,7 +26,7 @@ public class ShortcutService {
 
         LinkedList<Shortcut> shortcuts = new LinkedList<>();
         for (int i = 0; i < numOfShortcuts; i++){
-            shortcuts.add(new Shortcut(shortcutConfig.getUrl(i), shortcutConfig.getImage(i)));
+            shortcuts.add(new Shortcut(shortcutConfig.getUrl(i), shortcutConfig.getImage(i), shortcutConfig.getAlt(i)));
         }
         return shortcuts;
     }

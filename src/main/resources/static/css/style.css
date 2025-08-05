@@ -58,3 +58,45 @@ body{
 input:focus{
     outline: inherit;
 }
+
+.shortcut-container{
+    background-color: white;
+    opacity: 0.94;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 0 18px 18px 0;
+    border: 2px solid crimson;
+    filter: drop-shadow(6px 6px 0 crimson);
+    padding-left:10px;
+}
+
+.shortcut-container h2{
+    font-size:0.8em;
+    padding: 10px 10px 0px 10px;
+}
+
+.shortcut-wrapper{
+    position: absolute;
+    left: -1100px;
+    top: 50%;
+    transform: translate(0%, -50%);
+    padding-right:60px;
+    padding-left:1000px;
+}
+
+.shortcut-wrapper:hover{
+    left: -1010px;
+    transition: left 0.05s ease-out;
+}
+
+.shortcut{
+    width:70px;
+    height:70px;
+    padding: 10px;
+    object-fit: cover;
+}
+
+.shortcut:hover{
+    transform:scale(1.1);
+}

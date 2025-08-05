@@ -12,6 +12,7 @@
         <link th:href="@{/css/style.css}" rel="stylesheet"/>
     </head>
     <body class="wallpaper">
+
         <section class="center-anchor">
             <div class="tagline-container">
                 <h1>It's a 
@@ -21,15 +22,21 @@
             </div>
             <div class="searchbox-container">
                 <form method="post" action="https://duckduckgo.com/">
-                    <input type="text" name="q" value="" placeholder="Search..." autofocus="autofocus">
+                    <input type="text" name="q" value="" placeholder="Search..." autofocus="autofocus" autocomplete="off">
                 </form>
             </div>
         </section>
-        <section>
-            <div th:each="shortcut : ${shortcuts}">
-                <pre th:text="${shortcut.imageurl}"></pre>
-                <pre th:text="${shortcut.hyperlinkurl}"></pre>
+
+        <section class="shortcut-wrapper">
+            <div class="shortcut-container">
+                <h2>Shortcuts</h2>
+                <div th:each="shortcut : ${shortcuts}">
+                    <a th:href="@{${shortcut.hyperlinkurl}}">
+                        <img class="shortcut" th:src="@{${shortcut.imageurl}}" th:alt="${shortcut.alttext}"/>
+                    </a>
+                </div>
             </div>
         </section>
+
     </body>
 </html>
