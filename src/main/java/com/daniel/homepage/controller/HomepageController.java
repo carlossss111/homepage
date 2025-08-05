@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.daniel.homepage.model.Weather;
 import com.daniel.homepage.service.DateService;
+import com.daniel.homepage.service.ShortcutService;
 import com.daniel.homepage.service.WallpaperService;
 import com.daniel.homepage.service.WeatherService;
 
@@ -26,12 +27,16 @@ public class HomepageController {
     @Autowired
     private WallpaperService wallpaperService;
 
+    @Autowired
+    private ShortcutService shortcutService;
+
     @GetMapping("/")
     public String getHomepage(Model model) {
         Weather weather = weatherService.getWeather();
         model.addAttribute("weather", weather);
         model.addAttribute("wallpaper", wallpaperService.getWallpaper(weather.getAdjective()));
-        model.addAttribute("dateStr", dateService.getDayStr(LocalDateTime.now()));
+        model.addAttribute("datestr", dateService.getDayStr(LocalDateTime.now()));
+        model.addAttribute("shortcuts", shortcutService.getShortcuts());
         return INDEX_HTML;
     }
     

@@ -16,13 +16,19 @@
             <div class="tagline-container">
                 <h1>It's a 
                     <span th:text="${weather.adjective}"></span> 
-                    <span th:text="${dateStr}"></span>!
+                    <span th:text="${datestr}"></span>!
                 </h1>
             </div>
             <div class="searchbox-container">
                 <form method="post" action="https://duckduckgo.com/">
                     <input type="text" name="q" value="" placeholder="Search..." autofocus="autofocus">
                 </form>
+            </div>
+        </section>
+        <section>
+            <div th:each="shortcut : ${shortcuts}">
+                <pre th:text="${shortcut.imageurl}"></pre>
+                <pre th:text="${shortcut.hyperlinkurl}"></pre>
             </div>
         </section>
     </body>

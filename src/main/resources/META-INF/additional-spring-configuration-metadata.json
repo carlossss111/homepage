@@ -113,5 +113,15 @@
     "name": "wallpaper.clear",
     "type": "java.lang.String",
     "description": "Image for a clearday"
+  },
+  {
+    "name": "shortcut.urls",
+    "type": "java.lang.String[]",
+    "description": "List of URLs for the shortcut hyperlinks"
+  },
+  {
+    "name": "shortcut.images",
+    "type": "java.lang.String[]",
+    "description": "List of image urls for the shortcuts"
   }
 ]}
