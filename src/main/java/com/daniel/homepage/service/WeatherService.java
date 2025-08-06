@@ -63,7 +63,7 @@ public class WeatherService {
         if(weather.getHumidity() >= weatherConfig.getHighHumidity())
             return messageConfig.getHighHumidity();
 
-        if(weather.getWindSpeed() >= weatherConfig.getHighWindspeed())
+        if(weather.getWindSpeedKph() >= weatherConfig.getHighWindspeed())
             return messageConfig.getWind();
 
         if(adjectiveMap.get(descriptor) != null) // 'clouds' should be the only value left
@@ -99,6 +99,9 @@ public class WeatherService {
             
             currentWeather.setAdjective(decideAdjective(currentWeather));
             System.out.println("Adjective chosen: " + currentWeather.getAdjective());
+
+            currentWeather.setIconUrl(weatherConfig.getIconPrefix(), currentWeather.getIcon(), weatherConfig.getIconSuffix());
+            System.out.println("Weather Icon URL: " + currentWeather.getIconUrl());
         }
         catch (JsonProcessingException e){
             System.out.println("Failed to read the weather json! " + e);

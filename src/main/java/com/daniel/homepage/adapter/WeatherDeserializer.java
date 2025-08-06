@@ -35,6 +35,7 @@ public class WeatherDeserializer extends StdDeserializer<Weather>{
     private static final String LOCATION = "name";
     private static final String LAT = "lat";
     private static final String LON = "lon";
+    private static final String ICON = "icon";
 
     public WeatherDeserializer() { 
         this(null); 
@@ -56,6 +57,8 @@ public class WeatherDeserializer extends StdDeserializer<Weather>{
             summaryNode.get(WEATHER_NAME).asText());
         weather.setSummary(
             summaryNode.get(DESCRIPTION).asText());
+        weather.setIcon(
+            summaryNode.get(ICON).asText());
 
         JsonNode mainNode = root.get(MAIN_NODE);
         weather.setTemp(
@@ -72,7 +75,7 @@ public class WeatherDeserializer extends StdDeserializer<Weather>{
             mainNode.get(HUMIDITY).asInt());
 
         JsonNode windNode = root.get(WIND_NODE);
-        weather.setWindSpeed(
+        weather.setWindSpeedKphFromMps(
             windNode.get(WIND_SPEED).asDouble());
         weather.setWindDirectionDeg(
             windNode.get(WIND_DIRECTION).asDouble());
