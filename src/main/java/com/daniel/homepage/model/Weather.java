@@ -1,11 +1,12 @@
 package com.daniel.homepage.model;
 
+import java.net.URI;
 import java.time.LocalDateTime;
+
+import org.springframework.lang.NonNull;
 
 import com.daniel.homepage.adapter.WeatherDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
-import io.micrometer.common.lang.NonNull;
 
 @JsonDeserialize(using = WeatherDeserializer.class)
 public class Weather {
@@ -13,13 +14,15 @@ public class Weather {
     private String descriptor;
     private String summary;
     private String adjective = "";
+    private String icon = "10d";
+    private URI iconUrl;
     private double temp;
     private double feelsLike;
     private double maxTemp;
     private double minTemp;
     private int pressure;
     private int humidity;
-    private double windSpeed;
+    private double windSpeedKph;
     private double windDirectionDeg;
     private int cloudCover;
     private LocalDateTime sunrise;
@@ -46,6 +49,14 @@ public class Weather {
         this.summary = summary;
     }
 
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public void setIconUrl(String prefix, String icon, String suffix) {
+        this.iconUrl = URI.create(prefix + icon + suffix);
+    }
+
     public void setTemp(double temp) {
         this.temp = temp;
     }
@@ -70,8 +81,12 @@ public class Weather {
         this.humidity = humidity;
     }
 
-    public void setWindSpeed(double windSpeed) {
-        this.windSpeed = windSpeed;
+    public void setWindSpeedKph(double windSpeed) {
+        this.windSpeedKph = windSpeed;
+    }
+
+    public void setWindSpeedKphFromMps(double windSpeed) {
+        this.windSpeedKph = windSpeed * 3.6;
     }
 
     public void setWindDirectionDeg(double windDirectionDeg) {
@@ -140,8 +155,8 @@ public class Weather {
         return humidity;
     }
 
-    public double getWindSpeed() {
-        return windSpeed;
+    public double getWindSpeedKph() {
+        return windSpeedKph;
     }
 
     public double getWindDirectionDeg() {
@@ -176,13 +191,21 @@ public class Weather {
         return timeCreated;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public URI getIconUrl() {
+        return iconUrl;
+    }
+
     @Override
     public String toString(){
         return String.format("[%s]<timeCreated=%s, adjective=%s, descriptor=%s, summary=%s, temp=%f"
             + ", feelsLike=%f, maxTemp=%f, minTemp=%f, pressure=%d, humidity=%d, windSpeed=%f, windDirectionDeg=%f"
             + ", cloudCover=%d, sunrise=%s, sunset=%s, lat=%f, lon=%f, location=%s>",
             super.toString(), timeCreated.toString(), adjective, descriptor, summary, temp, feelsLike, maxTemp, minTemp, pressure,
-            humidity, windSpeed, windDirectionDeg, cloudCover, sunrise.toString(), sunset.toString(),
+            humidity, windSpeedKph, windDirectionDeg, cloudCover, sunrise.toString(), sunset.toString(),
             lat, lon, locationName);
     }
 

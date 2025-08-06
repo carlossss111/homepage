@@ -16,6 +16,8 @@ public class WeatherConfig {
     private int veryHighTemp;
     private int highHumidity;
     private int highWindspeed; 
+    private String iconPrefix;
+    private String iconSuffix;
 
     public void setRefreshCron(String refreshCron) {
         this.refreshCron = refreshCron;
@@ -65,6 +67,14 @@ public class WeatherConfig {
         this.highWindspeed = highWindspeed;
     }
 
+    public void setIconPrefix(String iconPrefix) {
+        this.iconPrefix = iconPrefix;
+    }
+
+    public void setIconSuffix(String iconSuffix) {
+        this.iconSuffix = iconSuffix;
+    }
+
     public String getRefreshCron(){
         return refreshCron;
     }
@@ -112,5 +122,12 @@ public class WeatherConfig {
     public int getHighWindspeed() {
         return highWindspeed;
     }
-    
+
+    public String getIconPrefix() {
+        return iconPrefix;
+    }
+
+    public String getIconSuffix() {
+        return iconSuffix;
+    }
 }

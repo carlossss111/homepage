@@ -25,6 +25,16 @@
                     <input type="text" name="q" value="" placeholder="Search..." autofocus="autofocus" autocomplete="off">
                 </form>
             </div>
+            <div class="stats-container">
+                <img th:src="@{${weather.iconUrl}}"/>
+                <p><span th:text="${#numbers.formatDecimal(weather.temp,0,1)}"></span>°C</p>
+                <img th:src="@{/images/misc/wind.png}"/>
+                <p><span th:text="${#numbers.formatDecimal(weather.windSpeedKph,0,1)}"></span>km/h</p>
+                <img th:src="@{/images/misc/sunrise.png}"/>
+                <p><span th:text="${#temporals.format(weather.sunrise, 'HH:mm')}"></span></p>
+                <img th:src="@{/images/misc/sunset.png}"/>
+                <p><span th:text="${#temporals.format(weather.sunset, 'HH:mm')}"></span></p>
+            </div>
         </section>
 
         <section class="shortcut-wrapper">

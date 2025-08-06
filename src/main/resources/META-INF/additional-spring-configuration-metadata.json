@@ -128,5 +128,15 @@
     "name": "shortcut.alts",
     "type": "java.lang.String[]",
     "description": "List of alt text for shortcuts"
+  },
+  {
+    "name": "weather.icon_suffix",
+    "type": "java.lang.String",
+    "description": "URL suffix for weather summary icon"
+  },
+  {
+    "name": "weather.icon_prefix",
+    "type": "java.lang.String",
+    "description": "URL prefix for weather summary icon"
   }
 ]}

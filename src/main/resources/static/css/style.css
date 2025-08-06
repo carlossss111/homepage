@@ -30,7 +30,7 @@ body{
 }
 
 .tagline-container{
-    width: 550px;
+    width: 600px;
     background-color: white;
     border: 2px solid crimson;
     padding: 0.8rem 2rem;
@@ -43,7 +43,7 @@ body{
 }
 
 .searchbox-container form input{
-    width: 550px;
+    width: 600px;
     padding: 0.8rem 3rem 0.5rem 1rem;
     height: 48px;
     border-radius: 18px;
@@ -58,6 +58,26 @@ body{
 input:focus{
     outline: inherit;
 }
+
+.stats-container{
+    width:600px;
+    background-color: white;
+    opacity: 0.94;
+    padding: 0.8rem 2rem;
+    border-radius: 18px;
+    border: 2px solid crimson;
+    filter: drop-shadow(6px 6px 0 crimson);
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.stats-container p{
+    margin:auto 0;
+}
+
+/* Shortcut Panel */
 
 .shortcut-container{
     background-color: white;
@@ -78,10 +98,10 @@ input:focus{
 
 .shortcut-wrapper{
     position: absolute;
-    left: -1100px;
+    left: -1120px;
     top: 50%;
     transform: translate(0%, -50%);
-    padding-right:60px;
+    padding-right:160px;
     padding-left:1000px;
 }
 
